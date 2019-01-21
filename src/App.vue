@@ -2,14 +2,18 @@
   <div id="app" >
    <div class="container">
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-2">
+          <img src="./assets/logo.png" alt="La Clémentine" />
+        </div>
+        <div class="col-lg-10 d-flex flex-column justify-content-center">
           <h1>La Clémentine</h1>
+          <p>Sandwicherie, petite restauration, plateau repas</p>
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-2" v-for="(day, indice) in days" :key="indice">
-          <Day :day="{day}.day" />
-        </div>
+          <div id="days" class="col-lg-2" v-for="(day, indice) in days" :key="indice" style="overflow: hidden;">
+              <Day :day="{day}.day" />
+          </div>
       </div>
     </div>
   </div>
@@ -88,9 +92,8 @@ export default {
           d.icon = data[i].weather[0].icon
           flag2 = true
         }
-        console.log('>>>>>>>>>>>>>>>>' + JSON.stringify(d))
+
         if (flag1 === true && flag2 === true) {
-          console.log('kkk')
           this.days.push(d)
           d = {}
           flag1 = false
@@ -113,11 +116,36 @@ export default {
 
 <style>
 #app {
+  background-image: url('./assets/adam-excell-20323-unsplash.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: -50vh;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  width: 100vw;
+  height: 100vh;
+  padding-left: 12%;
+}
+
+#days {
+  background-color: rgba(255, 255, 255,.4);
+}
+
+.fade-enter-active,
+.fade-leave-active{
+    transition: opacity 5s
+}
+.fade-enter,
+.fade-leave-to{
+    opacity: 0
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
